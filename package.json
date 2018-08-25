@@ -39,6 +39,7 @@
     "koa-router": "^7.4.0",
     "lodash": "^4.17.10",
     "palin": "^2.2.0",
+    "web3": "^1.0.0-beta.35",
     "yenv": "^2.1.0"
   },
   "devDependencies": {
