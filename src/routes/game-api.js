@@ -8,7 +8,7 @@ const api = blockchainService => ({
   root: async ctx => ctx.ok(),
   lineWebHook: async ctx => {
     console.log('------')
-    console.log(ctx.request.body.source.userId)
+    console.log(JSON.stringify(ctx.request.body))
     console.log('------')
     // blockchainService.testSentMesaage(ctx.request.body)
     ctx.ok()
