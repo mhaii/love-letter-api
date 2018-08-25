@@ -5,6 +5,7 @@ import { createController } from 'awilix-koa'
 // This way our services could be used in any type of app, not
 // just over HTTP.
 const api = blockchainService => ({
+  root: async ctx => ctx.ok(),
   lineWebHook: async ctx => {
     ctx.ok()
   }
@@ -13,4 +14,6 @@ const api = blockchainService => ({
 // Maps routes to method calls on the `api` controller.
 // See the `awilix-router-core` docs for info:
 // https://github.com/jeffijoe/awilix-router-core
-export default createController(api).post('/linewebhook', 'lineWebHook')
+export default createController(api)
+  .get('', 'root')
+  .post('/linewebhook', 'lineWebHook')
