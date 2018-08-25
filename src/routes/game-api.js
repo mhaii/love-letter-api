@@ -7,7 +7,7 @@ import { createController } from 'awilix-koa'
 const api = blockchainService => ({
   root: async ctx => ctx.ok(),
   lineWebHook: async ctx => {
-    console.log(ctx.request)
+    console.log(ctx.request.body)
     ctx.ok()
   }
 })
