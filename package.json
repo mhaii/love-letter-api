@@ -10,7 +10,7 @@
   },
   "scripts": {
     "start": "npm run build && node dist/bin/www.js",
-    "build": "npm run clean && rimraf dist && cross-env NODE_ENV=production babel src -d dist -s",
+    "build": "npm run clean && cross-env NODE_ENV=production babel src -d dist -s",
     "dev": "nodemon src/bin/www.js",
     "test": "cross-env NODE_ENV=test jest",
     "clean": "rm -rf dist && mkdir dist",
