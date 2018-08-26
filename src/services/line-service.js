@@ -99,7 +99,8 @@ export default class LineService {
           // call discard
           const users = await this.userService.getUserMapping()
            const  m1 = [{type:"text", text: `${mock_users_name[users[user]]} discards ${card_type[card_id].name}`}]
-
+           const revesrsUsers = await this.userService.getReverseUserMapping()
+           
            for(var key in mock_users_name) {
               sentLineMessage({user : revesrsUsers[key], messages: m1})
            }
