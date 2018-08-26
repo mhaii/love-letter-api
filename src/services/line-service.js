@@ -46,10 +46,10 @@ const card_type = {
 }
 
 const mock_users_name = {
-  "0x9B6cD7B6fFaC89085a41730d27B1e839D8A4520D" : "Bright",
-  "0x9AcF7Acdd3325CD488c853F72aF3814Fc7345DA7" : "Ben",
-  "0xBf290BD2fF6Bac19Cd1D620b2d4d238B43db649d" : "Film2",
-  "0x98df09FE1872AB90dbdbF746e559df00b0aCa4d8" : "Film"
+  "0x9b6cd7b6ffac89085a41730d27b1e839d8a4520d" : "Bright",
+  "0x9acf7acdd3325cd488c853f72af3814fc7345da7" : "Ben",
+  "0xbf290bd2ff6bac19cd1d620b2d4d238b43db649d" : "Film2",
+  "0x98df09fe1872ab90dbdbf746e559df00b0aca4d8" : "Film"
 }
 
 function sentLineMessage({user, messages}){
