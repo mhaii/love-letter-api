@@ -100,7 +100,7 @@ export default class LineService {
           const users = await this.userService.getUserMapping()
            const  m1 = [{type:"text", text: `${mock_users_name[users[user]]} discards ${card_type[card_id].name}`}]
            const revesrsUsers = await this.userService.getReverseUserMapping()
-           
+
            for(var key in mock_users_name) {
               sentLineMessage({user : revesrsUsers[key], messages: m1})
            }
@@ -327,7 +327,7 @@ export default class LineService {
 
   async sentPlayerLost({player}){
     console.log('sentPlayerLost')
-    const messageBody = [{type:"text", text: `${mock_users_name[player]} is dead!!!`}]
+    const messageBody = [{type:"text", text: `${mock_users_name[player.toLowerCase()]} is dead!!!`}]
     const users = await this.userService.getUserMapping()
 
      for(var key in mock_users_name) {
