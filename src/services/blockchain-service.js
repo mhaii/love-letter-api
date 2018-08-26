@@ -5,7 +5,7 @@ import path from 'path'
 
 import Transaction from 'ethereumjs-tx'
 
-const contractAddr = '0xCfe4e1E3Ed87a1182277058c6c67dadD6F34D0B0'
+const contractAddr = '0x3c453540ca81de2e9e9a5252f47ae5aD82F7F280'
 
 let httpProvider = new Web3.providers.HttpProvider(
   'https://kovan.infura.io/e5754c82c46a4ea8aeb0e76296b541e7'
