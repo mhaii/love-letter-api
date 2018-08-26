@@ -374,7 +374,7 @@ export default class LineService {
 
     const revesrsUsers = await this.userService.getReverseUserMapping()
     console.log(revesrsUsers)
-    console.log(revesrsUsers[player])
+    console.log(revesrsUsers[player.toLowerCase()])
     sentLineMessage({user: revesrsUsers[player], messages: messageBody})
   }
 
