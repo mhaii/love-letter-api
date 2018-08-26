@@ -5,7 +5,7 @@ import path from 'path'
 
 import Transaction from 'ethereumjs-tx'
 
-const contractAddr = '0x7FCD6D483eE3B7110bCeBAE9f25CEBA917e9DCd9'
+const contractAddr = '0x577572b53Ea3f14841dcAbe028b376A6f5D27119'
 
 let httpProvider = new Web3.providers.HttpProvider(
   'https://kovan.infura.io/e5754c82c46a4ea8aeb0e76296b541e7'
@@ -52,37 +52,123 @@ export default class BlockchainService {
     return web3.eth.sendSignedTransaction('0x' + tx.serialize().toString('hex'))
   }
 
+  async getEventPromise(){
+    const eventPromise = new Promise((resolve, reject) => {
+      this.contractEvent.once('NextTurn', {}, (err, res) => {
+        console.log('NextTurn')
+        console.log(`${JSON.stringify(res.returnValues)}`.replace('Result ',''))
+        const obj = JSON.parse(`${JSON.stringify(res.returnValues)}`.replace('Result ',''))
+
+        if (!err) resolve({
+          "type" : "NextTurn",
+          "values" : {player: obj.player, cardId: obj.cardId, drawnCardId: obj.drawnCardId}
+        })
+        else reject(err)
+      })
+
+      this.contractEvent.once('PlayerLose', {}, (err, res) => {
+        console.log('PlayerLose')
+        console.log(`${JSON.stringify(res.returnValues)}`.replace('Result ',''))
+        const obj = JSON.parse(`${JSON.stringify(res.returnValues)}`.replace('Result ',''))
+        
+        if (!err) resolve({
+          "type" : "PlayerLose",
+          "values" : {player: obj.loser}
+        })
+        else reject(err)
+      })
+
+      
+    })
+
+    eventPromise.then(e => {
+      console.log('3')
+    })
+
+    return eventPromise
+  }
+
+  async playerDisCard({player,cardId}) {
+    const eventPromise = new Promise((resolve, reject) => {
+      this.contractEvent.once('GuessingPlayerHand', {}, (err, res) => {
+        console.log('GuessingPlayerHand')
+        console.log(`${JSON.stringify(res.returnValues)}`.replace('Result ',''))
+        const obj = JSON.parse(`${JSON.stringify(res.returnValues)}`.replace('Result ',''))
+
+        if (!err) resolve(obj)
+        else reject(err)
+      })
+    })
+
+    eventPromise.then(e => {
+      console.log('1')
+    })
+
+    this.createTransaction({
+      abi: this.contract.methods.useCard(cardId,player)
+    })
+      .then(e => {
+        // console.log(e)
+        console.log('done discard')
+      })
+      .catch(e => {
+        console.log(e)
+        console.log('fuck discard')
+      })
+
+      return eventPromise
+
+  }
+
+  async guessPlayerHand({player,cardId}) {
+
+    console.log('guessPlayerHand')
+    console.log(player)
+    console.log(cardId)
+    this.createTransaction({
+      abi: this.contract.methods.guessPlayerHand(player,cardId)
+    })
+      .then(e => {
+        // console.log(e)
+        console.log('done guessPlayerHand')
+      })
+      .catch(e => {
+        console.log(e)
+        console.log('fuck guessPlayerHand')
+      })
+
+  }
+
   async addPlayerToGame(addr) {
     const eventPromise = new Promise((resolve, reject) => {
       this.contractEvent.once('PlayerAdded', {}, (err, res) => {
-        if (!err) resolve(res)
+        console.log('PlayerAdded')
+        if (!err) resolve('ok')
         else reject(err)
       })
       this.contractEvent.once('PlayerBalanceInsufficient', {}, (err, res) => {
+        console.log('PlayerBalanceInsufficient')
         if (!err) resolve(res)
         else reject(err)
       })
     })
 
     eventPromise.then(e => {
-      console.log(1)
-      console.log(e)
-      console.log('2')
+      console.log('1')
     })
 
     this.createTransaction({
       abi: this.contract.methods.addPlayer(addr)
     })
       .then(e => {
-        console.log(e)
-        console.log('aha')
+        // console.log(e)
+        console.log('done addPlayer')
       })
       .catch(e => {
         console.log(e)
-        console.log('fuck')
+        console.log('fuck addPlayer')
       })
 
-    console.log('returning promise')
-    return eventPromise
+      return eventPromise
   }
 }

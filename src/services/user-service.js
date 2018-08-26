@@ -32,6 +32,7 @@ export default class UserService {
   }
 
   async addUserMapping({ user, address }) {
+    console.log('addUserMapping')
     await Promise.all([
       this.getUserMapping().then(list => {
         list[user] = address
@@ -40,6 +41,14 @@ export default class UserService {
         list[address] = user
       })
     ]).then(async () => this._saveToFile())
+   /* let users = await this.getUserMapping()
+    console.log(users[user])
+    if(!users[user]) {
+      users[user] = address
+      console.log(users)
+      fs.writeFileSync(userFilePath, JSON.stringify(users))
+    } */
+    
   }
 
   async _saveToFile() {

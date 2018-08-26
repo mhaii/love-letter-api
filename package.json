@@ -15,8 +15,7 @@
     "test": "cross-env NODE_ENV=test jest",
     "clean": "rm -rf dist && mkdir dist",
     "cover": "npm run test -- --coverage",
-    "lint": "eslint --fix src && prettier --write \"src/**/*.js\"",
-    "precommit": "lint-staged"
+    "lint": "eslint --fix src && prettier --write \"src/**/*.js\""
   },
   "dependencies": {
     "@koa/cors": "^2.2.1",
