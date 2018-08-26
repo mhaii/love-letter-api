@@ -59,7 +59,7 @@ function sentLineMessage({user, messages}){
         'Authorization': `Bearer ${secret}`
     }
     let body = JSON.stringify({
-        "to": user,
+        "to": 'U1a845d6acdfafde68f058205b3189753',
         messages: messages
     })
     console.log(body)
@@ -336,9 +336,7 @@ export default class LineService {
 
   async sendNextTurn({player,cardId,drawnCardId}){
     console.log('sendNextTurn')
-    console.log(player)
-    console.log(cardId)
-    console.log(drawnCardId)
+
     const messageBody = [ { type: "text", text : "Draw!! You can keep only one card. Please choose a card to be discarded."} ,        {
             "type": "template",
             "altText": "Cards in hand",
@@ -374,8 +372,9 @@ export default class LineService {
             }
           }]
 
-          const revesrsUsers = await this.userService.getReverseUserMapping()
-
+    const revesrsUsers = await this.userService.getReverseUserMapping()
+    console.log(revesrsUsers)
+    consoel.log(revesrsUsers[player])
     sentLineMessage({user: revesrsUsers[player], messages: messageBody})
   }
 
