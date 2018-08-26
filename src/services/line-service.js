@@ -59,7 +59,7 @@ function sentLineMessage({user, messages}){
         'Authorization': `Bearer ${secret}`
     }
     let body = JSON.stringify({
-        "to": user,
+        "to": `${user}`,
         messages: messages
     })
     console.log(body)
