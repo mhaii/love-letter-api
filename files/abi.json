@@ -1,39 +1,9 @@
 [
  {
-  "constant": false,
-  "inputs": [
-   {
-    "name": "_cardId",
-    "type": "uint8"
-   },
-   {
-    "name": "_currentPlayer",
-    "type": "address"
-   }
-  ],
-  "name": "useCard",
-  "outputs": [],
-  "payable": false,
-  "stateMutability": "nonpayable",
-  "type": "function"
- },
- {
-  "constant": false,
-  "inputs": [
-   {
-    "name": "playerToBeVerified",
-    "type": "address"
-   },
-   {
-    "name": "cardId",
-    "type": "uint8"
-   }
-  ],
-  "name": "guessPlayerHand",
-  "outputs": [],
-  "payable": false,
-  "stateMutability": "nonpayable",
-  "type": "function"
+  "anonymous": false,
+  "inputs": [],
+  "name": "PlayerBalanceInsufficient",
+  "type": "event"
  },
  {
   "constant": false,
@@ -59,10 +29,28 @@
   "type": "function"
  },
  {
-  "inputs": [],
+  "constant": false,
+  "inputs": [
+   {
+    "name": "playerToBeVerified",
+    "type": "address"
+   },
+   {
+    "name": "cardId",
+    "type": "uint8"
+   }
+  ],
+  "name": "guessPlayerHand",
+  "outputs": [],
   "payable": false,
   "stateMutability": "nonpayable",
-  "type": "constructor"
+  "type": "function"
+ },
+ {
+  "anonymous": false,
+  "inputs": [],
+  "name": "PlayerAdded",
+  "type": "event"
  },
  {
   "anonymous": false,
@@ -123,15 +111,27 @@
   "type": "event"
  },
  {
-  "anonymous": false,
-  "inputs": [],
-  "name": "PlayerAdded",
-  "type": "event"
+  "constant": false,
+  "inputs": [
+   {
+    "name": "_cardId",
+    "type": "uint8"
+   },
+   {
+    "name": "_currentPlayer",
+    "type": "address"
+   }
+  ],
+  "name": "useCard",
+  "outputs": [],
+  "payable": false,
+  "stateMutability": "nonpayable",
+  "type": "function"
  },
  {
-  "anonymous": false,
   "inputs": [],
-  "name": "PlayerBalanceInsufficient",
-  "type": "event"
+  "payable": false,
+  "stateMutability": "nonpayable",
+  "type": "constructor"
  }
 ]
