@@ -89,6 +89,7 @@ export default class LineService {
          // To do
          // map line_user_id -> addr
          console.log('mapping')
+         console.log(`${user} , ${message}`)
          this.userService.addUserMapping({ user: user, address: message})
 
          const messageBody = [{ type: "text", text : 'Type "start" to begin the game'}]
